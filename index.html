@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Место</title>
+</head>
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="images/mesto-logo.png" alt="Логотип">
+    <img class="header__line" src="images/line.png" alt="Линия">
+  </header>
+  <main>
+    <section class="profile">
+      <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__name-subtitle">Исследователь океана</p>
+        <button class="profile__edit-btn"><img src="images/edit-btn.svg" alt="Редактировать профиль"></button>
+      </div>
+      <button class="profile__add-btn"><img src="images/add-btn.png" alt="Добавить место"></button>
+    </section>
+    <section class="popup">
+        <form class="popup__container">
+          <img class="popup__close-icon" src="images/close-icon.png" alt="Закрыть">
+          <h2 class="popup__heading">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <label for="user-name"></label>
+            <input type="text" class="popup__item popup__user-name" id="user-name">
+            <label for="user-subtitle"></label>
+            <input type="text" class="popup__item popup__user-subtitle" id="user-subtitle">
+            <button class="popup__submit-btn">Сохранить</button>
+          </fieldset>
+        </form>
+    </section>
+    <section class="elements">
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+            <h2 class="element__text">Карачаевск</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+            <h2 class="element__text">Домбай</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+            <h2 class="element__text">Домбай</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+        <div class="element">
+            <div class="element__background"></div>
+            <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+            <h2 class="element__text">Карачаево-Черкессия</h2>
+            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+        </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+  </footer>
+</body>
