@@ -1,76 +1,98 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
-    <title>Место</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Место</title>
 </head>
 <body class="page">
   <header class="header">
     <img class="header__logo" src="images/mesto-logo.png" alt="Логотип">
-    <img class="header__line" src="images/line.png" alt="Линия">
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
-      <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <p class="profile__name-subtitle">Исследователь океана</p>
-        <button class="profile__edit-btn"><img src="images/edit-btn.svg" alt="Редактировать профиль"></button>
+      <div class="profile__data">
+        <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="profile__edit-btn"><img src="images/edit-btn.svg" class="profile__edit-btn-img" alt="Редактировать профиль"></a></h1>
+          <p class="profile__name-subtitle">Исследователь океана</p>
+        </div>
       </div>
-      <button class="profile__add-btn"><img src="images/add-btn.png" alt="Добавить место"></button>
+      <a href="#" class="profile__add-btn"></a>
     </section>
-    <section class="popup">
-        <form class="popup__container">
+    <section class="popup popup_opened"> <!--popup_opened-->
+      <div class="popup__container">
+        <button class="popup__close-btn">
           <img class="popup__close-icon" src="images/close-icon.png" alt="Закрыть">
+        </button>
+        <form class="popup__form">
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
             <label for="user-name"></label>
-            <input type="text" class="popup__item popup__user-name" id="user-name">
+            <input type="text" class="popup__form-field" id="user-name" value="Жак-Ив Кусто">
             <label for="user-subtitle"></label>
-            <input type="text" class="popup__item popup__user-subtitle" id="user-subtitle">
-            <button class="popup__submit-btn">Сохранить</button>
+            <input type="text" class="popup__form-field" id="user-subtitle" value="Исследователь океана">
+            <button class="popup__submit-btn" type="submit">Сохранить</button>
           </fieldset>
         </form>
+      </div>
     </section>
     <section class="elements">
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
-            <h2 class="element__text">Карачаевск</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      <div class="element">
+        <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+        <div class="element__info">
+          <h2 class="element__text">Карачаевск</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon element__like-icon_active" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      </div>
+      <div class="element">
+        <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+        <div class="element__info">
+          <h2 class="element__text">Гора Эльбрус</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
-            <h2 class="element__text">Домбай</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      </div>
+      <div class="element">
+        <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+        <div class="element__info">
+          <h2 class="element__text">Домбай</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      </div>
+      <div class="element">
+        <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+        <div class="element__info">
+          <h2 class="element__text">Гора Эльбрус</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
-            <h2 class="element__text">Домбай</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      </div>
+      <div class="element">
+        <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+        <div class="element__info">
+          <h2 class="element__text">Домбай</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
-        <div class="element">
-            <div class="element__background"></div>
-            <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
-            <h2 class="element__text">Карачаево-Черкессия</h2>
-            <img class="element__like-symbol" src="images/like-symbol.png" alt="Лайк">
+      </div>
+      <div class="element">
+        <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+        <div class="element__info">
+          <h2 class="element__text">Карачаево-Черкессия</h2>
+          <button class="element__like-btn" type="button">
+            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          </button>
         </div>
+      </div>
     </section>
   </main>
   <footer class="footer">
