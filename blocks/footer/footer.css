@@ -1,0 +1,17 @@
+.footer {
+  display: flex;
+  padding: 67px 0 60px;
+}
+
+@media screen and (max-width: 950px) {
+  .footer {
+    padding-left: 17px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    padding: 48px 17px 36px;
+  }
+}
+

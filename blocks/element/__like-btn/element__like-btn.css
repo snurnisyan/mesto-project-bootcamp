@@ -1,0 +1,9 @@
+.element__like-btn {
+  border: 0 none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.element__like-btn:hover {
+  opacity: .5;
+}

@@ -1,0 +1,19 @@
+.profile__add-btn {
+  text-decoration: none;
+  min-width: 150px;
+  min-height: 50px;
+  background-image: url('../../../images/icons/add-btn.png');
+  background-repeat: no-repeat;
+}
+
+.profile__add-btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 950px) {
+  .profile__add-btn {
+    min-width: 282px;
+    margin-top: 36px;
+    background-image: url('../../../images/icons/add-btn_large.png');
+  }
+}
