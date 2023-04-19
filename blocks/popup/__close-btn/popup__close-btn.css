@@ -1,9 +1,11 @@
 .popup__close-btn {
   background-color: transparent;
   border: 0;
-  padding: 0 0 8px 8px;
+  padding: 0;
   align-self: flex-end;
   line-height: 0;
+  transform: translate(40px, -8px);
+  cursor: pointer;
 }
 
 .popup__close-btn:hover {
@@ -12,6 +14,6 @@
 
 @media screen and (max-width: 500px) {
   .popup__close-btn {
-    padding: 0 0 16px 0;
+    transform: translate(0, -16px);
   }
 }

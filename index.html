@@ -8,91 +8,92 @@
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="images/mesto-logo.png" alt="Логотип">
+    <img class="header__logo" src="images/mesto-logo.svg" alt="Логотип">
   </header>
-  <main>
+  <main class="content">
     <section class="profile">
       <div class="profile__data">
         <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто<a href="#" class="profile__edit-btn"><img src="images/icons/edit-btn.svg" class="profile__edit-btn-img" alt="Редактировать профиль"></a></h1>
+        <div class="profile__name-container">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
+        </div>
           <p class="profile__name-subtitle">Исследователь океана</p>
         </div>
       </div>
-      <a href="#" class="profile__add-btn"></a>
+      <button class="profile__add-btn" type="button" aria-label="Добавить фото"></button>
     </section>
-    <section class="popup"> <!--можно добавить popup_opened-->
+    <div class="popup"> <!--можно добавить класс popup_opened-->
       <div class="popup__container">
-        <button class="popup__close-btn">
-          <img class="popup__close-icon" src="images/icons/close-icon.png" alt="Закрыть">
+        <button class="popup__close-btn" type="button" aria-label="Закрыть">
+          <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
         </button>
-        <form class="popup__form">
+        <form class="popup__form" name="profile-edit">
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
-            <label for="user-name"></label>
-            <input type="text" class="popup__form-field" id="user-name" value="Жак-Ив Кусто">
-            <label for="user-subtitle"></label>
-            <input type="text" class="popup__form-field" id="user-subtitle" value="Исследователь океана">
+            <input type="text" class="popup__form-field" name="profile-name" value="Жак-Ив Кусто">
+            <input type="text" class="popup__form-field" name="profile-name-subtitle" value="Исследователь океана">
             <button class="popup__submit-btn" type="submit">Сохранить</button>
           </fieldset>
         </form>
       </div>
-    </section>
+    </div>
     <section class="elements">
-      <div class="element">
-        <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+      <article class="element">
+        <img class="element__img" src="images/places/baikal.jpg" alt="Байкал">
         <div class="element__info">
-          <h2 class="element__text">Карачаевск</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <h2 class="element__text">Байкал</h2>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
-      <div class="element">
-        <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+      </article>
+      <article class="element">
+        <img class="element__img" src="images/places/karelia.jpg" alt="Карелия">
         <div class="element__info">
-          <h2 class="element__text">Гора Эльбрус</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <h2 class="element__text">Карелия</h2>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
         <div class="element__info">
           <h2 class="element__text">Домбай</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
         <div class="element__info">
           <h2 class="element__text">Гора Эльбрус</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
-      <div class="element">
-        <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+      </article>
+      <article class="element">
+        <img class="element__img" src="images/places/altai.jpg" alt="Алтай">
         <div class="element__info">
-          <h2 class="element__text">Домбай</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <h2 class="element__text">Алтай</h2>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
         <div class="element__info">
           <h2 class="element__text">Карачаево-Черкессия</h2>
-          <button class="element__like-btn" type="button">
-            <svg class="element__like-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 22 19"><path d="M19.7 2.3c2.1 2 2.1 5.3 0 7.3L11 18 2.3 9.6C1.3 8.6.7 7.3.7 5.9c0-1.4.5-2.7 1.6-3.7 2.1-2 5.5-2 7.6 0l1 1.2 1-1.2c2.2-2 5.7-2 7.8.1z"/></svg>
+          <button class="element__like-btn" type="button" aria-label="Мне нравится">
+            <img class="element__like-icon" src="images/icons/like-icon.svg" alt="Лайк">
           </button>
         </div>
-      </div>
+      </article>
     </section>
   </main>
   <footer class="footer">

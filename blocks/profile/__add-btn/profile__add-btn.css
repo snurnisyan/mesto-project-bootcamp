@@ -1,9 +1,15 @@
 .profile__add-btn {
-  text-decoration: none;
   min-width: 150px;
   min-height: 50px;
-  background-image: url('../../../images/icons/add-btn.png');
+  background-image: url('../../../images/icons/add-btn.svg');
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+  padding: 0;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .profile__add-btn:hover {
@@ -14,6 +20,6 @@
   .profile__add-btn {
     min-width: 282px;
     margin-top: 36px;
-    background-image: url('../../../images/icons/add-btn_large.png');
+    background-size: 16px 16px;
   }
 }
