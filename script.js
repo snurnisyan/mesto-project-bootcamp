@@ -47,6 +47,7 @@ function handleFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
 }
 formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', closePopup('#edit-form'));
 
 
 const initialCards = [
