@@ -19,27 +19,43 @@
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
         </div>
-          <p class="profile__name-subtitle">Исследователь океана</p>
+          <p class="profile__job">Исследователь океана</p>
         </div>
       </div>
       <button class="profile__add-btn" type="button" aria-label="Добавить фото"></button>
     </section>
-    <div class="popup"> <!--можно добавить класс popup_opened-->
+    <div class="popup" id="edit-form"> <!--можно добавить класс popup_opened-->
       <div class="popup__container">
-        <button class="popup__close-btn" type="button" aria-label="Закрыть">
+        <button class="popup__close-btn" id="edit-close-btn" type="button" aria-label="Закрыть">
           <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
         </button>
         <form class="popup__form" name="profile-edit">
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
-            <input type="text" class="popup__form-field" name="profile-name" value="Жак-Ив Кусто">
-            <input type="text" class="popup__form-field" name="profile-name-subtitle" value="Исследователь океана">
+            <input type="text" class="popup__form-field" name="profile-name" value="">
+            <input type="text" class="popup__form-field" name="profile-job" value="">
             <button class="popup__submit-btn" type="submit">Сохранить</button>
           </fieldset>
         </form>
       </div>
     </div>
+    <div class="popup" id="add-form"> <!--можно добавить класс popup_opened-->
+      <div class="popup__container">
+        <button class="popup__close-btn" id="add-close-btn" type="button" aria-label="Закрыть">
+          <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
+        </button>
+        <form class="popup__form" name="add-place">
+          <h2 class="popup__heading">Новое место</h2>
+          <fieldset class="popup__input-container">
+            <input type="text" class="popup__form-field" name="place-name" placeholder="Название" value="">
+            <input type="text" class="popup__form-field" name="place-link" placeholder="Ссылка на картинку" value="">
+            <button class="popup__submit-btn" type="submit" id="submit-add-btn">Создать</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <section class="elements">
+      <template>
       <article class="element">
         <img class="element__img" src="images/places/baikal.jpg" alt="Байкал">
         <div class="element__info">
@@ -94,9 +110,11 @@
           </button>
         </div>
       </article>
+    </template>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
+<script src="script.js"></script>
 </body>
