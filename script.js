@@ -108,6 +108,8 @@ function handlePlaceSubmit(evt) {
   placeLink.src = placeLinkInput.value;
   placeLink.alt = placeNameInput.value;
   places.prepend(placeElement);
+  placeNameInput.value = '';
+  placeLinkInput.value = '';
 }
 placeFormElement.addEventListener('submit', handlePlaceSubmit);
 placeFormElement.addEventListener('submit', closePopup('#add-form'));
