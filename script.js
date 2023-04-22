@@ -102,7 +102,19 @@ function createCard(link, name) {
   likeBtn.addEventListener('click', toggleLike);
   const deleteBtn = placeElement.querySelector('.element__delete-btn');
   deleteBtn.addEventListener('click', deleteCard);
+  const imgBtn = placeElement.querySelector('.element__img');
+  imgBtn.addEventListener('click', imgPopup(link, name));
+  imgBtn.addEventListener('click', openPopup('#card-img'));
   places.prepend(placeElement);
+}
+
+function imgPopup(link, name) {
+  return () => {
+    const placePopup = document.querySelector('.img-popup');
+    placePopup.querySelector('.img-popup__img').src = link;
+    placePopup.querySelector('.img-popup__img').alt = name;
+    placePopup.querySelector('.img-popup__name').textContent = name;
+  }
 }
 
 function handlePlaceSubmit(evt) {
@@ -111,7 +123,6 @@ function handlePlaceSubmit(evt) {
   placeNameInput.value = '';
   placeLinkInput.value = '';
 }
-
 placeFormElement.addEventListener('submit', handlePlaceSubmit);
 placeFormElement.addEventListener('submit', closePopup);
 
@@ -132,3 +143,15 @@ function deleteCard(event) {
   const placeCard = deleteBtn.closest('.element');
   placeCard.remove();
 }
+
+popupCloseBtn = document.querySelector('#img-close-btn');
+popupCloseBtn.addEventListener('click', closePopup);
+
+/*function openImgPopup(popupId) {
+    const placePopup = document.querySelector('.img-popup');
+    placePopup.querySelector('.img-popup__img').src = initialCards[i].link;
+    placePopup.querySelector('.img-popup__img').alt = initialCards[i].name;
+    placePopup.querySelector('.img-popup__name').textContent = initialCards[i].name;
+    let popup = document.querySelector(popupId);
+    popup.classList.add('popup_opened');
+}*/

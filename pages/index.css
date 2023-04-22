@@ -50,3 +50,25 @@
 /* Подключаем footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
+
+.img-popup {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.img-popup__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-popup__name {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.img-popup__img {
+  max-width: 75vw;
+  max-height: 75vh;
+}
