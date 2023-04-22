@@ -25,7 +25,7 @@
 @import url('../blocks/profile/__job/profile__name-subtitle.css');
 @import url('../blocks/profile/__add-btn/profile__add-btn.css');
 
-/* Подключаем popup */
+/* Подключаем popup для форм*/
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__container/popup__container.css');
@@ -36,6 +36,13 @@
 @import url('../blocks/popup/__input-container/popup__input-container.css');
 @import url('../blocks/popup/__form-field/popup__form-field.css');
 @import url('../blocks/popup/__submit-btn/popup__submit-btn.css');
+
+/* Подключаем popup для галереи*/
+@import url('../blocks/img-popup/img-popup.css');
+@import url('../blocks/img-popup/__container/img-popup__container.css');
+@import url('../blocks/img-popup/__img/img-popup__img.css');
+@import url('../blocks/img-popup/__name/img-popup__name.css');
+
 
 /* Подключаем elements */
 @import url('../blocks/elements/elements.css');
@@ -50,25 +57,3 @@
 /* Подключаем footer */
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
-
-.img-popup {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.img-popup__container {
-  display: flex;
-  flex-direction: column;
-}
-
-.img-popup__name {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  margin: 0;
-  padding-top: 10px;
-}
-
-.img-popup__img {
-  max-width: 75vw;
-  max-height: 75vh;
-}

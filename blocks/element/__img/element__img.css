@@ -6,4 +6,5 @@
   display: block;
   position: relative;
   filter: brightness(.75);
+  cursor: pointer;
 }
