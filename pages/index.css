@@ -44,8 +44,8 @@
 @import url('../blocks/element/__info/element__info.css');
 @import url('../blocks/element/__text/element__text.css');
 @import url('../blocks/element/__like-btn/element__like-btn.css');
-@import url('../blocks/element/__like-icon/element__like-icon.css');
-@import url('../blocks/element/__like-icon/_active/element__like-icon_active.css');
+@import url('../blocks/element/__delete-btn/element__delete-btn.css');
+@import url('../blocks/element/__like-btn/_active/element__like-btn_active.css');
 
 /* Подключаем footer */
 @import url('../blocks/footer/footer.css');
