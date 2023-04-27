@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 function openPopup(popupId) {
   return () => {
     let popup = document.querySelector(popupId);

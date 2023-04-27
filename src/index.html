@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
+  <!--<link rel="stylesheet" href="../pages/index.css">-->
   <title>Место</title>
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="images/mesto-logo.svg" alt="Логотип">
+    <img class="header__logo" src="<%=require(../images/mesto-logo.svg)%>" alt="Логотип">
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__data">
-        <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require(../images/avatar.jpg)%>" alt="Аватар">
         <div class="profile__info">
         <div class="profile__name-container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -27,7 +27,7 @@
     <div class="popup" id="edit-form"> <!--можно добавить класс popup_opened-->
       <div class="popup__container">
         <button class="popup__close-btn" id="edit-close-btn" type="button" aria-label="Закрыть">
-          <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
+          <img class="popup__close-icon" src="<%=require(../images/icons/close-icon.svg)&>" alt="Закрыть">
         </button>
         <form class="popup__form" name="profile-edit">
           <h2 class="popup__heading">Редактировать профиль</h2>
@@ -42,7 +42,7 @@
     <div class="popup" id="add-form"> <!--можно добавить класс popup_opened-->
       <div class="popup__container">
         <button class="popup__close-btn" id="add-close-btn" type="button" aria-label="Закрыть">
-          <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
+          <img class="popup__close-icon" src="<%=require(../images/icons/close-icon.svg)%>" alt="Закрыть">
         </button>
         <form class="popup__form" name="add-place">
           <h2 class="popup__heading">Новое место</h2>
@@ -57,7 +57,7 @@
     <section class="elements">
       <template>
       <article class="element">
-        <img class="element__img" src="images/places/baikal.jpg" alt="Байкал">
+        <img class="element__img" src="<%=require(../images/places/baikal.jpg)%>" alt="Байкал">
         <div class="element__info">
           <h2 class="element__text">Байкал</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится">
@@ -66,7 +66,7 @@
         <button class="element__delete-btn" type="button" aria-label="Удалить"></button>
       </article>
       <article class="element">
-        <img class="element__img" src="images/places/karelia.jpg" alt="Карелия">
+        <img class="element__img" src="../images/places/karelia.jpg" alt="Карелия">
         <div class="element__info">
           <h2 class="element__text">Карелия</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится"></button>
@@ -74,7 +74,7 @@
         <button class="element__delete-btn" type="button" aria-label="Удалить"></button>
       </article>
       <article class="element">
-        <img class="element__img" src="images/places/dombai.jpg" alt="Домбай">
+        <img class="element__img" src="../images/places/dombai.jpg" alt="Домбай">
         <div class="element__info">
           <h2 class="element__text">Домбай</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится"></button>
@@ -82,7 +82,7 @@
         <button class="element__delete-btn" type="button" aria-label="Удалить"></button>
       </article>
       <article class="element">
-        <img class="element__img" src="images/places/elbrus.jpg" alt="Эльбрус">
+        <img class="element__img" src="../images/places/elbrus.jpg" alt="Эльбрус">
         <div class="element__info">
           <h2 class="element__text">Гора Эльбрус</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится"></button>
@@ -90,7 +90,7 @@
         <button class="element__delete-btn" type="button" aria-label="Удалить"></button>
       </article>
       <article class="element">
-        <img class="element__img" src="images/places/altai.jpg" alt="Алтай">
+        <img class="element__img" src="../images/places/altai.jpg" alt="Алтай">
         <div class="element__info">
           <h2 class="element__text">Алтай</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится"></button>
@@ -98,7 +98,7 @@
         <button class="element__delete-btn" type="button" aria-label="Удалить"></button>
       </article>
       <article class="element">
-        <img class="element__img" src="images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+        <img class="element__img" src="../images/places/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
         <div class="element__info">
           <h2 class="element__text">Карачаево-Черкессия</h2>
           <button class="element__like-btn" type="button" aria-label="Мне нравится"></button>
@@ -111,7 +111,7 @@
   <div class="popup img-popup" id="card-img"> <!--можно добавить класс popup_opened-->
     <div class="img-popup__container">
       <button class="popup__close-btn" id="img-close-btn" type="button" aria-label="Закрыть">
-        <img class="popup__close-icon" src="images/icons/close-icon.svg" alt="Закрыть">
+        <img class="popup__close-icon" src="<%=require(../images/icons/close-icon.svg)%>" alt="Закрыть">
       </button>
       <img class="img-popup__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg" alt="Камчатка">
       <p class="img-popup__name">Камчатка</p>
@@ -120,5 +120,5 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
-<script src="script.js"></script>
+<!--<script src="index.js"></script>-->
 </body>
