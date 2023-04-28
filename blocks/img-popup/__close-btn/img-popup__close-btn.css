@@ -1,0 +1,10 @@
+.img-popup__close-btn {
+  transform: translate(40px, -8px);
+}
+
+@media screen and (max-width: 500px) {
+  .popup__close-btn {
+    transform: translate(0, -16px);
+  }
+}
+

@@ -4,7 +4,7 @@
   padding: 0;
   align-self: flex-end;
   line-height: 0;
-  transform: translate(40px, -8px);
+  transform: translate(40px, -40px);
   cursor: pointer;
 }
 
@@ -14,6 +14,6 @@
 
 @media screen and (max-width: 500px) {
   .popup__close-btn {
-    transform: translate(0, -16px);
+    transform: translate(0, -36px);
   }
 }

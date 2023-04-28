@@ -36,6 +36,7 @@
 @import url('../blocks/popup/__input-container/popup__input-container.css');
 @import url('../blocks/popup/__form-field/popup__form-field.css');
 @import url('../blocks/popup/__submit-btn/popup__submit-btn.css');
+@import url('../blocks/img-popup/__close-btn/img-popup__close-btn.css');
 
 /* Подключаем popup для галереи*/
 @import url('../blocks/img-popup/img-popup.css');
