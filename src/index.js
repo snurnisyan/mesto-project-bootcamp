@@ -14,8 +14,8 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const profileForm = document.profileEdit;
 const cardForm = document.addPlace;
-const nameInput = profileForm.elements.formProfileName;
-const jobInput = profileForm.elements.formProfileJob;
+const profileNameInput = profileForm.elements.formProfileName;
+const profileJobInput = profileForm.elements.formProfileJob;
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -28,8 +28,8 @@ function setEditFormValues(formElement, value) {
 }
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
+  profileName.textContent = profileNameInput.value;
+  profileJob.textContent = profileJobInput.value;
 }
 
 function toggleLike(event) {
@@ -44,8 +44,8 @@ function deleteCard(event) {
 }
 
 editBtn.addEventListener('click', () => {
-  setEditFormValues(nameInput, profileName);
-  setEditFormValues(jobInput, profileJob);
+  setEditFormValues(profileNameInput, profileName);
+  setEditFormValues(profileJobInput, profileJob);
   openPopup(profilePopup);
 });
 profileCloseBtn.addEventListener('click', () => {
@@ -60,8 +60,8 @@ addCloseBtn.addEventListener('click', () => {
 imgCloseBtn.addEventListener('click', () => {
   closePopup(imagePopup);
 });
-profileForm.addEventListener('submit', () => {
-  handleProfileFormSubmit();
+profileForm.addEventListener('submit', (evt) => {
+  handleProfileFormSubmit(evt);
   closePopup(profilePopup);
 });
 
@@ -153,4 +153,60 @@ function handlePlaceFormSubmit(evt) {
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
+const showInputError = (formType, formInput, errorMessage) => {
+  const inputError = formType.querySelector(`.${formInput.id}-error`);
+  formInput.classList.add('popup__form-field_type_error');
+  inputError.textContent = errorMessage;
+  inputError.classList.add('popup__span-message_active');
+};
 
+const hideInputError = (formType, formInput) => {
+  const inputError = formType.querySelector(`.${formInput.id}-error`);
+  formInput.classList.remove('popup__form-field_type_error');
+  inputError.classList.remove('popup__span-message_active');
+  inputError.textContent = '';
+};
+
+const isValid = (formType, formInput) => {
+  if (!formInput.validity.valid) {
+    showInputError(formType, formInput, formInput.validationMessage);
+  } else {
+    hideInputError(formType, formInput);
+  }
+};
+
+
+const setFormEventListeners = (formType) => {
+  const inputList = Array.from(formType.querySelectorAll('.popup__form-field'));
+  const formSubmitButton = formType.querySelector('.popup__submit-btn');
+  toggleButtonState(inputList, formSubmitButton);
+  inputList.forEach((formInput) => {
+    formInput.addEventListener('input', () => {
+      isValid(formType, formInput);
+      toggleButtonState(inputList, formSubmitButton);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formType) => {
+    setFormEventListeners(formType);
+  });
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((formInput) => {
+    return !formInput.validity.valid;
+  })
+};
+
+const toggleButtonState = (inputList, formSubmitButton) => {
+  if (hasInvalidInput(inputList)) {
+    formSubmitButton.classList.add('popup__submit-btn_inactive');
+  } else {
+    formSubmitButton.classList.remove('popup__submit-btn_inactive');
+  }
+};
+
+enableValidation();
