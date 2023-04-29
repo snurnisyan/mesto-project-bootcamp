@@ -96,7 +96,11 @@ const placeTemplate = document.querySelector('#cardTemplate').content.querySelec
 const placesContainer = document.querySelector('.elements');
 
 initialCards.forEach((i) => {
-  const placeCard = createCard(i.link, i.name);
+  const cardObj = {
+    name: i.name,
+    link: i.link
+  };
+  const placeCard = createCard(cardObj);
   placesContainer.append(placeCard);
 });
 
@@ -104,43 +108,46 @@ const placeForm = document.addPlace;
 const placeNameInput = placeForm.elements.placeName;
 const placeLinkInput = placeForm.elements.placeLink;
 
-function createCard(link, name) {
+function createCard(cardData) {
   const placeElement = placeTemplate.cloneNode(true);
   const imageInPlaceElement = placeElement.querySelector('.element__img')
-  imageInPlaceElement.src = link;
-  imageInPlaceElement.alt = name;
-  placeElement.querySelector('.element__text').textContent = name;
+  imageInPlaceElement.src = cardData.link;
+  imageInPlaceElement.alt = cardData.name;
+  placeElement.querySelector('.element__text').textContent = cardData.name;
   const likeBtn = placeElement.querySelector('.element__like-btn');
   likeBtn.addEventListener('click', toggleLike);
   const deleteBtn = placeElement.querySelector('.element__delete-btn');
   deleteBtn.addEventListener('click', deleteCard);
   const imgBtn = placeElement.querySelector('.element__img');
   imgBtn.addEventListener('click', () => {
-    createImagePopup(link, name);
+    createImagePopup(cardData);
     openPopup(imagePopup);
   });
   return placeElement;
 }
 
-function renderCard(link, name) {
-  const placeCard = createCard(link, name);
+function renderCard(cardData) {
+  const placeCard = createCard(cardData);
   placesContainer.prepend(placeCard);
 }
 
 const imageInPopup = imagePopup.querySelector('.img-popup__img');
 const titleInPopup = imagePopup.querySelector('.img-popup__name');
 
-function createImagePopup(link, name) {
-  imageInPopup.src = link;
-  imageInPopup.alt = name;
-  titleInPopup.textContent = name;
+function createImagePopup(cardData) {
+  imageInPopup.src = cardData.link;
+  imageInPopup.alt = cardData.name;
+  titleInPopup.textContent = cardData.name;
 }
 
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
-  renderCard(placeLinkInput.value, placeNameInput.value);
-  placeNameInput.value = '';
-  placeLinkInput.value = '';
+  const cardObj = {
+    name: placeNameInput.value,
+    link: placeLinkInput.value
+  };
+  renderCard(cardObj);
+  placeForm.reset();
   closePopup(cardPopup);
 }
 
