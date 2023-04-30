@@ -18,7 +18,7 @@ const profileNameInput = profileForm.elements.formProfileName;
 const profileJobInput = profileForm.elements.formProfileJob;
 
 function openPopup(popup) {
-    popup.classList.add('popup_opened');
+  popup.classList.add('popup_opened');
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -210,3 +210,25 @@ const toggleButtonState = (inputList, formSubmitButton) => {
 };
 
 enableValidation();
+
+function closePopupWithEsc(evt, popup) {
+  if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
+    closePopup(popup);
+  }
+}
+
+document.addEventListener('keydown', (evt) => {
+  closePopupWithEsc(evt, profilePopup);
+  closePopupWithEsc(evt, cardPopup);
+  closePopupWithEsc(evt, imagePopup);
+});
+
+function closePopupFromOutside(evt) {
+  const popupContainer = evt.target.closest('[class*="popup__container"]');
+  const popup = evt.target.closest('.popup');
+  if (popup && !popupContainer && popup.classList.contains('popup_opened')) {
+    closePopup(popup);
+  }
+}
+
+document.addEventListener('click', closePopupFromOutside);
