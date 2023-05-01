@@ -47,4 +47,4 @@ document.addEventListener('keydown', (evt) => {
   closePopupWithEsc(evt, imagePopup);
 });
 
-document.addEventListener('click', closePopupFromOutside);
+document.addEventListener('mousedown', closePopupFromOutside);
