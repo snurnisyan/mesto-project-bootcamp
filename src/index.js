@@ -1,8 +1,8 @@
 import '../pages/index.css';
 
 import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, profilePopup, cardPopup, imagePopup,
-  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, openPopup, closePopup } from 'components/utils';
-import { placeForm, placesContainer, initialCards, createCard, handlePlaceFormSubmit } from 'components/card';
+  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, openPopup, closePopup } from './components/utils';
+import { placeForm, placesContainer, initialCards, createCard, handlePlaceFormSubmit } from './components/card';
 import {setEditFormValues, closePopupWithEsc, closePopupFromOutside, handleProfileFormSubmit } from "./components/modal";
 import { enableValidation } from "./components/validate";
 
