@@ -1,10 +1,28 @@
 import '../pages/index.css';
 
 import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, profilePopup, cardPopup, imagePopup,
-  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, openPopup, closePopup } from './components/utils';
+  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm } from './components/utils';
 import { placeForm, placesContainer, initialCards, createCard, handlePlaceFormSubmit } from './components/card';
-import {setEditFormValues, closePopupWithEsc, closePopupFromOutside, handleProfileFormSubmit } from "./components/modal";
+import { closePopupFromOutside, openPopup, closePopup } from "./components/modal";
 import { enableValidation } from "./components/validate";
+
+function setEditFormValues(formElement, value) {
+  formElement.value = value.textContent;
+}
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  profileJob.textContent = profileJobInput.value;
+}
+
+initialCards.forEach((i) => {
+  const cardObj = {
+    name: i.name,
+    link: i.link
+  };
+  const placeCard = createCard(cardObj);
+  placesContainer.append(placeCard);
+});
 
 editBtn.addEventListener('click', () => {
   setEditFormValues(profileNameInput, profileName);
@@ -28,23 +46,17 @@ profileForm.addEventListener('submit', (evt) => {
   closePopup(profilePopup);
 });
 
-initialCards.forEach((i) => {
-  const cardObj = {
-    name: i.name,
-    link: i.link
-  };
-  const placeCard = createCard(cardObj);
-  placesContainer.append(placeCard);
-});
-
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
-enableValidation();
+profilePopup.addEventListener('mousedown', closePopupFromOutside);
+cardPopup.addEventListener('mousedown', closePopupFromOutside);
+imagePopup.addEventListener('mousedown', closePopupFromOutside);
 
-document.addEventListener('keydown', (evt) => {
-  closePopupWithEsc(evt, profilePopup);
-  closePopupWithEsc(evt, cardPopup);
-  closePopupWithEsc(evt, imagePopup);
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-field',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_inactive',
+  inputErrorClass: 'popup__form-field_type_error',
+  errorClass: 'popup__span-message_active'
 });
-
-document.addEventListener('mousedown', closePopupFromOutside);

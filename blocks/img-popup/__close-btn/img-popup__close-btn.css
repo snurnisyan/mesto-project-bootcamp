@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .popup__close-btn {
+  .img-popup__close-btn {
     transform: translate(0, -16px);
   }
 }

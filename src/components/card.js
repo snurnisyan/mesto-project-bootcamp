@@ -1,5 +1,5 @@
-import { imagePopup, cardPopup, openPopup, closePopup } from './utils';
-import { toggleLike, deleteCard } from './modal';
+import { imagePopup, cardPopup } from './utils';
+import { openPopup, closePopup } from './modal';
 
 const initialCards = [
   {
@@ -59,6 +59,17 @@ function renderCard(cardData) {
   placesContainer.prepend(placeCard);
 }
 
+function toggleLike(event) {
+  const likeBtn = event.target;
+  likeBtn.classList.toggle('element__like-btn_active');
+}
+
+function deleteCard(event) {
+  const deleteBtn = event.target;
+  const placeCard = deleteBtn.closest('.element');
+  placeCard.remove();
+}
+
 function createImagePopup(cardData) {
   imageInPopup.src = cardData.link;
   imageInPopup.alt = cardData.name;
@@ -76,4 +87,4 @@ function handlePlaceFormSubmit(evt) {
   closePopup(cardPopup);
 }
 
-export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, createCard, handlePlaceFormSubmit }
+export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, toggleLike, deleteCard, createCard, handlePlaceFormSubmit }

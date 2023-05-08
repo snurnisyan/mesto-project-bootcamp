@@ -14,12 +14,5 @@ const profileForm = document.profileEdit;
 const profileNameInput = profileForm.elements.formProfileName;
 const profileJobInput = profileForm.elements.formProfileJob;
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
 export { profilePopup, cardPopup, imagePopup, editBtn, addBtn, profileCloseBtn, addCloseBtn, imgCloseBtn,
-  profileName, profileJob, profileForm, profileNameInput, profileJobInput, openPopup, closePopup }
+  profileName, profileJob, profileForm, profileNameInput, profileJobInput }
