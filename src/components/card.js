@@ -1,5 +1,6 @@
 import { imagePopup, cardPopup } from './utils';
 import { openPopup, closePopup } from './modal';
+import {postCard, userId, deleteCardFromServer, putLike, deleteLike } from '../index';
 
 const initialCards = [
   {
@@ -42,10 +43,16 @@ function createCard(cardData) {
   imageInPlaceElement.src = cardData.link;
   imageInPlaceElement.alt = cardData.name;
   placeElement.querySelector('.element__text').textContent = cardData.name;
+  placeElement.id = cardData._id;
   const likeBtn = placeElement.querySelector('.element__like-btn');
   likeBtn.addEventListener('click', toggleLike);
+  setLikes(cardData, likeBtn, likeBtn.nextElementSibling)
   const deleteBtn = placeElement.querySelector('.element__delete-btn');
-  deleteBtn.addEventListener('click', deleteCard);
+  if (cardData.owner._id !== userId) {
+    deleteBtn.remove();
+  } else {
+    deleteBtn.addEventListener('click', deleteCard);
+  }
   const imgBtn = placeElement.querySelector('.element__img');
   imgBtn.addEventListener('click', () => {
     createImagePopup(cardData);
@@ -61,13 +68,40 @@ function renderCard(cardData) {
 
 function toggleLike(event) {
   const likeBtn = event.target;
+  let likeCounter = likeBtn.nextElementSibling;
   likeBtn.classList.toggle('element__like-btn_active');
+  if (likeBtn.classList.contains('element__like-btn_active')) {
+    putLike(likeBtn.closest('.element').id)
+      .then ((res) => {
+        likeCounter.textContent = res.likes.length;
+      })
+  } else {
+    deleteLike(likeBtn.closest('.element').id)
+      .then ((res) => {
+        likeCounter.textContent = res.likes.length;
+      })
+  }
+}
+
+function setLikes(cardData, btn, counter) {
+  const userIds = cardData.likes.map(user => {
+    return user._id;
+  })
+  if (userIds.includes(userId)) {
+    btn.classList.add('element__like-btn_active');
+    counter.textContent = cardData.likes.length;
+  }
 }
 
 function deleteCard(event) {
   const deleteBtn = event.target;
   const placeCard = deleteBtn.closest('.element');
-  placeCard.remove();
+  deleteCardFromServer(placeCard.id)
+    .then((res) => {
+      if (res.ok) {
+        placeCard.remove();
+      }
+    })
 }
 
 function createImagePopup(cardData) {
@@ -82,9 +116,9 @@ function handlePlaceFormSubmit(evt) {
     name: placeNameInput.value,
     link: placeLinkInput.value
   };
-  renderCard(cardObj);
+  postCard(placeNameInput.value, placeLinkInput.value);
   placeForm.reset();
   closePopup(cardPopup);
 }
 
-export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, toggleLike, deleteCard, createCard, handlePlaceFormSubmit }
+export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, toggleLike, deleteCard, createCard, renderCard, handlePlaceFormSubmit }

@@ -10,9 +10,11 @@ const imgCloseBtn = imagePopup.querySelector('#img-close-btn');
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
+
+const profileAvatar = document.querySelector('.profile__avatar');
 const profileForm = document.profileEdit;
 const profileNameInput = profileForm.elements.formProfileName;
 const profileJobInput = profileForm.elements.formProfileJob;
 
 export { profilePopup, cardPopup, imagePopup, editBtn, addBtn, profileCloseBtn, addCloseBtn, imgCloseBtn,
-  profileName, profileJob, profileForm, profileNameInput, profileJobInput }
+  profileName, profileJob, profileAvatar, profileForm, profileNameInput, profileJobInput }
