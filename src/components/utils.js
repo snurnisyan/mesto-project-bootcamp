@@ -11,7 +11,6 @@ const imgCloseBtn = imagePopup.querySelector('#img-close-btn');
 const editAvatarBtn = document.querySelector('.profile__avatar-btn');
 const avatarCloseBtn = avatarPopup.querySelector('#edit-avatar-close-btn');
 
-
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
@@ -23,6 +22,8 @@ const avatarSubmitBtn = avatarForm.querySelector('.popup__submit-btn');
 const profileNameInput = profileForm.elements.formProfileName;
 const profileJobInput = profileForm.elements.formProfileJob;
 const avatarInput = avatarForm.elements.avatarLink;
+
+
 
 export { profilePopup, cardPopup, imagePopup, editBtn, addBtn, profileCloseBtn, addCloseBtn, imgCloseBtn, profileName, profileJob,
   profileAvatar, profileForm, profileNameInput, profileJobInput, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,

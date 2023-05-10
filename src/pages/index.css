@@ -1,8 +1,8 @@
 /* Подключаем файл normalize.css */
-@import url('../vendor/normalize.css');
+@import url('../../vendor/normalize.css');
 
 /* Подключаем шрифты */
-@import url('../vendor/fonts/fonts.css');
+@import url('../../vendor/fonts/fonts.css');
 
 /* Подключаем page - общий блок для всей страницы */
 @import url('../blocks/page/page.css');
@@ -17,6 +17,7 @@
 /* Подключаем profile */
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__data/profile__data.css');
+@import url('../blocks/profile/__avatar-btn/profile__avatar-btn.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__name/profile__name.css');
@@ -58,6 +59,7 @@
 @import url('../blocks/element/__like-btn/element__like-btn.css');
 @import url('../blocks/element/__delete-btn/element__delete-btn.css');
 @import url('../blocks/element/__like-btn/_active/element__like-btn_active.css');
+@import url('../blocks/element/__like-counter/element__like-counter.css');
 
 /* Подключаем footer */
 @import url('../blocks/footer/footer.css');
