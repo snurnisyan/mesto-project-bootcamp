@@ -12,7 +12,9 @@
   <main class="content">
     <section class="profile">
       <div class="profile__data">
-        <img class="profile__avatar" src="../images/avatar.jpg" alt="Аватар">
+        <button class="profile__avatar-btn">
+          <img class="profile__avatar" src="#" alt="Аватар">
+        </button>
         <div class="profile__info">
         <div class="profile__name-container">
           <h1 class="profile__name"></h1>
@@ -69,6 +71,21 @@
           <input type="url" class="popup__form-field" id="place-link" name="placeLink" placeholder="Ссылка на картинку" required value="">
           <span class="popup__span-message place-link-error"></span>
           <button class="popup__submit-btn" type="submit" id="submit-add-btn">Создать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="edit-avatar-form">
+    <div class="popup__container">
+      <button class="popup__close-btn" id="edit-avatar-close-btn" type="button" aria-label="Закрыть">
+        <img class="popup__close-icon" src="../images/icons/close-icon.svg" alt="Закрыть">
+      </button>
+      <h2 class="popup__heading">Обновить аватар</h2>
+      <form class="popup__form" name="editAvatar" novalidate>
+        <div class="popup__input-container">
+          <input type="url" class="popup__form-field" id="avatar-link" name="avatarLink" placeholder="Ссылка на фото профиля" required value="">
+          <span class="popup__span-message avatar-link-error"></span>
+          <button class="popup__submit-btn" type="submit" id="submit-edit-avatar-btn">Сохранить</button>
         </div>
       </form>
     </div>

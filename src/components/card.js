@@ -1,6 +1,6 @@
 import { imagePopup, cardPopup } from './utils';
 import { openPopup, closePopup } from './modal';
-import {postCard, userId, deleteCardFromServer, putLike, deleteLike } from '../index';
+import {postCard, userId, deleteCardFromServer, putLike, deleteLike, renderLoading } from '../index';
 
 const initialCards = [
   {
@@ -32,6 +32,8 @@ const initialCards = [
 const placeTemplate = document.querySelector('#cardTemplate').content.querySelector('.element');
 const placesContainer = document.querySelector('.elements');
 const placeForm = document.addPlace;
+
+const placeSubmitBtn = placeForm.querySelector('.popup__submit-btn');
 const placeNameInput = placeForm.elements.placeName;
 const placeLinkInput = placeForm.elements.placeLink;
 const imageInPopup = imagePopup.querySelector('.img-popup__img');
@@ -112,13 +114,17 @@ function createImagePopup(cardData) {
 
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
-  const cardObj = {
+/*  const cardObj = {
     name: placeNameInput.value,
     link: placeLinkInput.value
-  };
-  postCard(placeNameInput.value, placeLinkInput.value);
+  };*/
+  renderLoading(placeSubmitBtn, 'Создание...');
+  const promisePost = postCard(placeNameInput.value, placeLinkInput.value);
+  promisePost.then(() => {
+    renderLoading(placeSubmitBtn, 'Создать');
+  })
   placeForm.reset();
   closePopup(cardPopup);
 }
 
-export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, toggleLike, deleteCard, createCard, renderCard, handlePlaceFormSubmit }
+export { initialCards, placesContainer, placeForm, placeNameInput, placeLinkInput, placeSubmitBtn, toggleLike, deleteCard, createCard, renderCard, handlePlaceFormSubmit }

@@ -1,8 +1,18 @@
 import '../pages/index.css';
 
 import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, profileAvatar, profilePopup, cardPopup, imagePopup,
-  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm } from './components/utils';
-import { placeForm, placesContainer, initialCards, createCard, handlePlaceFormSubmit, renderCard } from './components/card';
+  profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,
+  profileSubmitBtn, avatarSubmitBtn } from './components/utils';
+import {
+  placeForm,
+  placesContainer,
+  initialCards,
+  createCard,
+  handlePlaceFormSubmit,
+  renderCard,
+  placeSubmitBtn,
+  placeNameInput, placeLinkInput
+} from './components/card';
 import { closePopupFromOutside, openPopup, closePopup } from "./components/modal";
 import { enableValidation } from "./components/validate";
 
@@ -13,7 +23,21 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
-  updateProfileInfo(profileNameInput.value, profileJobInput.value);
+  renderLoading(profileSubmitBtn, 'Сохранение...');
+  const promisePost = updateProfileInfo(profileNameInput.value, profileJobInput.value);
+  promisePost.then(() => {
+    renderLoading(profileSubmitBtn, 'Сохранить');
+  })
+}
+
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  profileAvatar.src = avatarInput.value;
+  renderLoading(avatarSubmitBtn, 'Сохранение...');
+  const promisePost = updateAvatar(avatarInput.value);
+  promisePost.then(() => {
+    renderLoading(avatarSubmitBtn, 'Сохранить');
+  })
 }
 
 /*initialCards.forEach((i) => {
@@ -42,9 +66,22 @@ addCloseBtn.addEventListener('click', () => {
 imgCloseBtn.addEventListener('click', () => {
   closePopup(imagePopup);
 });
+
+editAvatarBtn.addEventListener('click', () => {
+  openPopup(avatarPopup);
+});
+avatarCloseBtn.addEventListener('click', () => {
+  closePopup(avatarPopup);
+});
+
 profileForm.addEventListener('submit', (evt) => {
   handleProfileFormSubmit(evt);
   closePopup(profilePopup);
+});
+
+avatarForm.addEventListener('submit', (evt) => {
+  handleAvatarFormSubmit(evt);
+  closePopup(avatarPopup);
 });
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
@@ -52,6 +89,7 @@ placeForm.addEventListener('submit', handlePlaceFormSubmit);
 profilePopup.addEventListener('mousedown', closePopupFromOutside);
 cardPopup.addEventListener('mousedown', closePopupFromOutside);
 imagePopup.addEventListener('mousedown', closePopupFromOutside);
+avatarPopup.addEventListener('mousedown', closePopupFromOutside);
 
 enableValidation({
   formSelector: '.popup__form',
@@ -76,11 +114,15 @@ function getProfile() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
       createProfileInfo(result);
       userId = result._id;
-      console.log(result);
     })
     .catch((err) => {
       console.log(err);
@@ -100,12 +142,16 @@ function getCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
       result.reverse();
       result.forEach(card => {
         renderCard(card);
-        console.log(card);
       });
     })
     .catch((err) => {
@@ -114,18 +160,34 @@ function getCards() {
 }
 
 function updateProfileInfo(nameProfile, aboutProfile) {
-  fetch(`${config.baseUrl}/users/me`, {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
       name: nameProfile,
-      about: aboutProfile
+      about: aboutProfile,
     })
   })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function updateAvatar(ava) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: ava,
+    })
+  })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function postCard(cardName, cardLink) {
-  fetch(`${config.baseUrl}/cards`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
     body: JSON.stringify({
@@ -133,9 +195,13 @@ function postCard(cardName, cardLink) {
       link: cardLink
     })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((card) => {
-      console.log(card);
       renderCard(card);
     })
     .catch(err => {
@@ -150,7 +216,10 @@ function deleteCardFromServer(cardId) {
     headers: config.headers,
   })
     .then(res => {
-      console.log(res);
+      if (res.ok) {
+        return res;
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
     .catch((err) => {
       console.log(err);
@@ -162,7 +231,12 @@ function putLike(cardId) {
     method: 'PUT',
     headers: config.headers,
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -173,10 +247,19 @@ function deleteLike(cardId) {
     method: 'DELETE',
     headers: config.headers,
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .catch((err) => {
       console.log(err);
     });
 }
 
-export { postCard, userId, deleteCardFromServer, putLike, deleteLike };
+function renderLoading(submitButton, text) {
+  submitButton.textContent = text;
+}
+
+export { postCard, userId, deleteCardFromServer, putLike, deleteLike, renderLoading };

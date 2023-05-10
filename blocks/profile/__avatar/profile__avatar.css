@@ -4,3 +4,35 @@
   height: 120px;
   object-fit: cover;
 }
+
+.profile__avatar-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile__avatar-btn::before {
+  background-color: black;
+  visibility: hidden;
+  opacity: 1;
+  transition: visibility 0.1s, opacity 0.1s linear;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.profile__avatar-btn:hover::before {
+  opacity: 0.8;
+  visibility: visible;
+  background-image: url('../../../images/icons/edit-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
