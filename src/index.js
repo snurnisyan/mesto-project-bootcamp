@@ -5,7 +5,7 @@ import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, pr
   profileSubmitBtn, avatarSubmitBtn } from './components/utils';
 import { placeForm, handlePlaceFormSubmit, renderCard } from './components/card';
 import { closePopupFromOutside, openPopup, closePopup } from './components/modal';
-import { enableValidation, toggleButtonState } from './components/validate';
+import { enableValidation } from './components/validate';
 import { getProfile, getCards, updateProfileInfo, updateAvatar } from './components/api'
 
 export let userId = '';
