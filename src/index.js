@@ -3,33 +3,51 @@ import './pages/index.css';
 import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, profileAvatar, profilePopup, cardPopup, imagePopup,
   profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,
   profileSubmitBtn, avatarSubmitBtn } from './components/utils';
-import { placeForm, handlePlaceFormSubmit } from './components/card';
+import { placeForm, handlePlaceFormSubmit, renderCard } from './components/card';
 import { closePopupFromOutside, openPopup, closePopup } from './components/modal';
 import { enableValidation } from './components/validate';
 import { getProfile, getCards, updateProfileInfo, updateAvatar } from './components/api'
+
+export let userId = '';
 
 function setEditFormValues(formElement, value) {
   formElement.value = value.textContent;
 }
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobInput.value;
   renderLoading(profileSubmitBtn, 'Сохранение...');
   const promisePost = updateProfileInfo(profileNameInput.value, profileJobInput.value);
   promisePost.then(() => {
-    renderLoading(profileSubmitBtn, 'Сохранить');
+    profileName.textContent = profileNameInput.value;
+    profileJob.textContent = profileJobInput.value;
   })
+    .then(() => {
+      closePopup(profilePopup);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+        renderLoading(profileSubmitBtn, 'Сохранить');
+      })
 }
 
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
-  profileAvatar.src = avatarInput.value;
   renderLoading(avatarSubmitBtn, 'Сохранение...');
   const promisePost = updateAvatar(avatarInput.value);
   promisePost.then(() => {
-    renderLoading(avatarSubmitBtn, 'Сохранить');
+    profileAvatar.src = avatarInput.value;
   })
+    .then(() => {
+      closePopup(avatarPopup);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(avatarSubmitBtn, 'Сохранить');
+    })
 }
 
 export function renderLoading(submitButton, text) {
@@ -66,16 +84,8 @@ avatarCloseBtn.addEventListener('click', () => {
   closePopup(avatarPopup);
 });
 
-profileForm.addEventListener('submit', (evt) => {
-  handleProfileFormSubmit(evt);
-  closePopup(profilePopup);
-});
-
-avatarForm.addEventListener('submit', (evt) => {
-  handleAvatarFormSubmit(evt);
-  closePopup(avatarPopup);
-});
-
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+avatarForm.addEventListener('submit', handleAvatarFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
 profilePopup.addEventListener('mousedown', closePopupFromOutside);
@@ -92,7 +102,17 @@ enableValidation({
   errorClass: 'popup__span-message_active'
 });
 
-getProfile()
-  .then(getCards);
+Promise.all([getProfile(), getCards()])
+  .then(([userData, cards]) => {
+    createProfileInfo(userData);
+    userId = userData._id;
+    cards.reverse();
+    cards.forEach(card => {
+      renderCard(card);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 

@@ -1,7 +1,7 @@
 import { imagePopup, cardPopup } from './utils';
 import { openPopup, closePopup } from './modal';
-import { renderLoading } from '../index';
-import { postCard, deleteCardFromServer, putLike, deleteLike, userId } from './api'
+import { renderLoading, userId } from '../index';
+import { postCard, deleteCardFromServer, putLike, deleteLike } from './api'
 
 /*const initialCards = [
   {
@@ -71,18 +71,25 @@ function renderCard(cardData) {
 
 function toggleLike(event) {
   const likeBtn = event.target;
-  let likeCounter = likeBtn.nextElementSibling;
-  likeBtn.classList.toggle('element__like-btn_active');
-  if (likeBtn.classList.contains('element__like-btn_active')) {
+  const likeCounter = likeBtn.nextElementSibling;
+  if (!likeBtn.classList.contains('element__like-btn_active')) {
     putLike(likeBtn.closest('.element').id)
       .then ((res) => {
+        likeBtn.classList.add('element__like-btn_active');
         likeCounter.textContent = res.likes.length;
       })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
     deleteLike(likeBtn.closest('.element').id)
       .then ((res) => {
+        likeBtn.classList.remove('element__like-btn_active');
         likeCounter.textContent = res.likes.length;
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 
@@ -100,11 +107,12 @@ function deleteCard(event) {
   const deleteBtn = event.target;
   const placeCard = deleteBtn.closest('.element');
   deleteCardFromServer(placeCard.id)
-    .then((res) => {
-      if (res.ok) {
-        placeCard.remove();
-      }
+    .then(() => {
+      placeCard.remove();
     })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function createImagePopup(cardData) {
@@ -117,11 +125,19 @@ function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
   renderLoading(placeSubmitBtn, 'Создание...');
   const promisePost = postCard(placeNameInput.value, placeLinkInput.value);
-  promisePost.then(() => {
-    renderLoading(placeSubmitBtn, 'Создать');
+  promisePost.then((card) => {
+    renderCard(card);
   })
-  placeForm.reset();
-  closePopup(cardPopup);
+    .then(() => {
+    placeForm.reset();
+    closePopup(cardPopup);
+  })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(placeSubmitBtn, 'Создать');
+    })
 }
 
 export { placesContainer, placeForm, placeNameInput, placeLinkInput, placeSubmitBtn, toggleLike,

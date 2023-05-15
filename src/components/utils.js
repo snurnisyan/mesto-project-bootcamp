@@ -23,8 +23,14 @@ const profileNameInput = profileForm.elements.formProfileName;
 const profileJobInput = profileForm.elements.formProfileJob;
 const avatarInput = avatarForm.elements.avatarLink;
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
 
 
 export { profilePopup, cardPopup, imagePopup, editBtn, addBtn, profileCloseBtn, addCloseBtn, imgCloseBtn, profileName, profileJob,
   profileAvatar, profileForm, profileNameInput, profileJobInput, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,
-  profileSubmitBtn, avatarSubmitBtn }
+  profileSubmitBtn, avatarSubmitBtn, checkResponse }
