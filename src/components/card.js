@@ -1,7 +1,8 @@
 import { imagePopup, cardPopup } from './utils';
 import { openPopup, closePopup } from './modal';
-import { renderLoading, userId } from '../index';
+import { renderLoading, userId, settings } from '../index';
 import { postCard, deleteCardFromServer, putLike, deleteLike } from './api'
+import { toggleButtonState } from "./validate";
 
 /*const initialCards = [
   {
@@ -129,14 +130,16 @@ function handlePlaceFormSubmit(evt) {
     renderCard(card);
   })
     .then(() => {
-    placeForm.reset();
-    closePopup(cardPopup);
-  })
+      placeForm.reset();
+      closePopup(cardPopup);
+    })
     .catch(err => {
       console.log(err);
     })
     .finally(() => {
       renderLoading(placeSubmitBtn, 'Создать');
+      const inputList = Array.from(placeForm.querySelectorAll(settings.inputSelector));
+      toggleButtonState(placeForm, inputList, settings);
     })
 }
 

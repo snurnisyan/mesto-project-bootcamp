@@ -41,7 +41,7 @@ const toggleButtonState = (formElement, inputList, settings) => {
   const formSubmitButton = formElement.querySelector(settings.submitButtonSelector);
   if (hasInvalidInput(inputList)) {
     formSubmitButton.classList.add(settings.inactiveButtonClass);
-    formSubmitButton.setAttribute('disabled', 0);
+    formSubmitButton.setAttribute('disabled', '');
 
   } else {
     formSubmitButton.classList.remove(settings.inactiveButtonClass);
@@ -56,6 +56,6 @@ function enableValidation(settings) {
   });
 }
 
-export { showInputError, hideInputError, isValid, setFormEventListeners, enableValidation, hasInvalidInput }
+export { showInputError, hideInputError, isValid, setFormEventListeners, enableValidation, hasInvalidInput, toggleButtonState }
 
 

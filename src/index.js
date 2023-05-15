@@ -5,10 +5,19 @@ import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, pr
   profileSubmitBtn, avatarSubmitBtn } from './components/utils';
 import { placeForm, handlePlaceFormSubmit, renderCard } from './components/card';
 import { closePopupFromOutside, openPopup, closePopup } from './components/modal';
-import { enableValidation } from './components/validate';
+import { enableValidation, toggleButtonState } from './components/validate';
 import { getProfile, getCards, updateProfileInfo, updateAvatar } from './components/api'
 
 export let userId = '';
+
+export const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-field',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_inactive',
+  inputErrorClass: 'popup__form-field_type_error',
+  errorClass: 'popup__span-message_active'
+}
 
 function setEditFormValues(formElement, value) {
   formElement.value = value.textContent;
@@ -28,8 +37,8 @@ function handleProfileFormSubmit(evt) {
       console.log(err);
     })
     .finally(() => {
-        renderLoading(profileSubmitBtn, 'Сохранить');
-      })
+      renderLoading(profileSubmitBtn, 'Сохранить');
+    })
 }
 
 function handleAvatarFormSubmit(evt) {
@@ -93,14 +102,8 @@ cardPopup.addEventListener('mousedown', closePopupFromOutside);
 imagePopup.addEventListener('mousedown', closePopupFromOutside);
 avatarPopup.addEventListener('mousedown', closePopupFromOutside);
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-field',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_inactive',
-  inputErrorClass: 'popup__form-field_type_error',
-  errorClass: 'popup__span-message_active'
-});
+
+enableValidation(settings);
 
 Promise.all([getProfile(), getCards()])
   .then(([userData, cards]) => {
