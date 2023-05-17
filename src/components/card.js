@@ -1,6 +1,6 @@
-import { imagePopup, cardPopup } from './utils';
+import { imagePopup, cardPopup, renderLoading } from './utils';
 import { openPopup, closePopup } from './modal';
-import { renderLoading, userId, settings } from '../index';
+import { userId, settings } from '../index';
 import { postCard, deleteCardFromServer, putLike, deleteLike } from './api'
 import { toggleButtonState } from "./validate";
 
@@ -40,6 +40,7 @@ const placeNameInput = placeForm.elements.placeName;
 const placeLinkInput = placeForm.elements.placeLink;
 const imageInPopup = imagePopup.querySelector('.img-popup__img');
 const titleInPopup = imagePopup.querySelector('.img-popup__name');
+const placeFormInputs = Array.from(placeForm.querySelectorAll('.popup__form-field'));
 
 function createCard(cardData) {
   const placeElement = placeTemplate.cloneNode(true);
@@ -79,18 +80,14 @@ function toggleLike(event) {
         likeBtn.classList.add('element__like-btn_active');
         likeCounter.textContent = res.likes.length;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   } else {
     deleteLike(likeBtn.closest('.element').id)
       .then ((res) => {
         likeBtn.classList.remove('element__like-btn_active');
         likeCounter.textContent = res.likes.length;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   }
 }
 
@@ -111,9 +108,7 @@ function deleteCard(event) {
     .then(() => {
       placeCard.remove();
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(console.error);
 }
 
 function createImagePopup(cardData) {
@@ -132,14 +127,11 @@ function handlePlaceFormSubmit(evt) {
     .then(() => {
       placeForm.reset();
       closePopup(cardPopup);
+      toggleButtonState(placeForm, placeFormInputs, settings);
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => {
       renderLoading(placeSubmitBtn, 'Создать');
-      const inputList = Array.from(placeForm.querySelectorAll(settings.inputSelector));
-      toggleButtonState(placeForm, inputList, settings);
     })
 }
 

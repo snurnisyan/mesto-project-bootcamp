@@ -30,7 +30,11 @@ function checkResponse(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
+function renderLoading(submitButton, text) {
+  submitButton.textContent = text;
+}
+
 
 export { profilePopup, cardPopup, imagePopup, editBtn, addBtn, profileCloseBtn, addCloseBtn, imgCloseBtn, profileName, profileJob,
   profileAvatar, profileForm, profileNameInput, profileJobInput, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,
-  profileSubmitBtn, avatarSubmitBtn, checkResponse }
+  profileSubmitBtn, avatarSubmitBtn, checkResponse, renderLoading }

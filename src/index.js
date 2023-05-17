@@ -2,7 +2,7 @@ import './pages/index.css';
 
 import { editBtn, profileNameInput, profileName, profileJobInput, profileJob, profileAvatar, profilePopup, cardPopup, imagePopup,
   profileCloseBtn, addBtn, addCloseBtn, imgCloseBtn, profileForm, avatarPopup, editAvatarBtn, avatarCloseBtn, avatarInput, avatarForm,
-  profileSubmitBtn, avatarSubmitBtn } from './components/utils';
+  profileSubmitBtn, avatarSubmitBtn, renderLoading } from './components/utils';
 import { placeForm, handlePlaceFormSubmit, renderCard } from './components/card';
 import { closePopupFromOutside, openPopup, closePopup } from './components/modal';
 import { enableValidation } from './components/validate';
@@ -29,13 +29,11 @@ function handleProfileFormSubmit(evt) {
   promisePost.then(() => {
     profileName.textContent = profileNameInput.value;
     profileJob.textContent = profileJobInput.value;
-  })
+    })
     .then(() => {
       closePopup(profilePopup);
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => {
       renderLoading(profileSubmitBtn, 'Сохранить');
     })
@@ -47,22 +45,17 @@ function handleAvatarFormSubmit(evt) {
   const promisePost = updateAvatar(avatarInput.value);
   promisePost.then(() => {
     profileAvatar.src = avatarInput.value;
-  })
+    })
     .then(() => {
       closePopup(avatarPopup);
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(console.error)
     .finally(() => {
       renderLoading(avatarSubmitBtn, 'Сохранить');
     })
 }
 
-export function renderLoading(submitButton, text) {
-  submitButton.textContent = text;
-}
-export function createProfileInfo(profileObj) {
+function createProfileInfo(profileObj) {
   profileName.textContent = profileObj.name;
   profileJob.textContent = profileObj.about;
   profileAvatar.src = profileObj.avatar;
@@ -110,12 +103,8 @@ Promise.all([getProfile(), getCards()])
     createProfileInfo(userData);
     userId = userData._id;
     cards.reverse();
-    cards.forEach(card => {
-      renderCard(card);
-    });
+    cards.forEach(renderCard);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch(console.error)
 
 
